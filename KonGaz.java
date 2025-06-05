@@ -1,4 +1,12 @@
-package PACKAGE_NAME;
+public class KonGaz extends Kontenery{
 
-public class KonGaz {
+
+
+
+
+
+
+    public KonGaz(Produkty produkty, int masaLadunkuKG, int wysokoscCM, int wagaWlasnaKG, int glebokoscCM, int maxMasaLadunkuKG) {
+        super(produkty, masaLadunkuKG, wysokoscCM, wagaWlasnaKG, glebokoscCM, maxMasaLadunkuKG);
+    }
 }

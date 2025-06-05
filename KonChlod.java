@@ -1,4 +1,15 @@
-package PACKAGE_NAME;
+public class KonChlod extends Kontenery{
 
-public class KonChlod {
+
+
+
+
+
+
+
+
+
+    public KonChlod(Produkty produkty, int masaLadunkuKG, int wysokoscCM, int wagaWlasnaKG, int glebokoscCM, int maxMasaLadunkuKG) {
+        super(produkty, masaLadunkuKG, wysokoscCM, wagaWlasnaKG, glebokoscCM, maxMasaLadunkuKG);
+    }
 }

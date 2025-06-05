@@ -5,6 +5,7 @@ public class Kontenery {
     private int WagaWlasnaKG;
     private int GlebokoscCM;
     private int MaxMasaLadunkuKG;
+    Produkty produkty;
 
     protected static int n = 0;
     protected String nrS1 = "KON";
@@ -16,7 +17,7 @@ public class Kontenery {
         return nrS1 + "-" + nrS2 + "-" + n;
     }
 
-    public Kontenery(int masaLadunkuKG, int wysokoscCM, int wagaWlasnaKG, int glebokoscCM, int maxMasaLadunkuKG) {
+    public Kontenery(Produkty produkty, int masaLadunkuKG, int wysokoscCM, int wagaWlasnaKG, int glebokoscCM, int maxMasaLadunkuKG) {
         MasaLadunkuKG = masaLadunkuKG;
         WysokoscCM = wysokoscCM;
         WagaWlasnaKG = wagaWlasnaKG;
@@ -35,7 +36,10 @@ public class Kontenery {
         System.out.println("Kontener: " + nrSeryjny + " zostal oprozniony.");
     }
 
-    public void ZaladowanieKontenera(int IloscKG){
+    public void ZaladowanieKontenera(int IloscKG, Produkty produkty) {
+        if(produkty.getCzyNiebezpieczny() == true){
+            MaxMasaLadunkuKG = MaxMasaLadunkuKG / 2;
+        }
         if(MaxMasaLadunkuKG < IloscKG){
             throw new RuntimeException("Masa ladunku jest wieksza niz pojemnosc kontenera.");
         }else{
