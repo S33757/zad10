@@ -1,6 +1,3 @@
-import java.lang.classfile.instruction.ThrowInstruction;
-import java.lang.reflect.UndeclaredThrowableException;
-
 public class Kontenery {
 
     private int MasaLadunkuKG;
