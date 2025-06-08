@@ -1,29 +1,41 @@
 public class Main {
     public static void main(String[] args) {
+        Produkty milk = new Produkty("Milk", 8.0, false);
+        Produkty fuel = new Produkty("Fuel", 15.0, true);
+        Produkty helium = new Produkty("Helium", 5.0, true);
+        Produkty bananas = new Produkty("Bananas", 13.0, false);
+        Produkty ice = new Produkty("Ice cream", -18.0, false);
 
-        // ------------------ WSZYSTKIE MOZLIWE PRODUKTY ----------------------------------
-        Produkty Bananas = new Produkty("Bananas", 13.3, false);
-        Produkty Chocolate = new Produkty("Chocolate", 18, false);
-        Produkty Fish = new Produkty("Fish", 2, false);
-        Produkty Meat = new Produkty("Meat", -15, false);
-        Produkty IceCream = new Produkty("Ice cream", -18, false);
-        Produkty Cheese = new Produkty("Cheese", 7.2, false);
-        Produkty Sausages = new Produkty("Sausages", 5, false);
-        Produkty Butter = new Produkty("Butter", 20.5, false);
-        Produkty Eggs = new Produkty("Eggs", 19, false);
-        // Plyny
-        Produkty Milk = new Produkty("Milk", 8, false);
-        Produkty Paliwo = new Produkty("Paliwo", 15, true);
-        //Gaz
-        Produkty Gas = new Produkty("Gas", 5, true);
+        KonPlyn kontenerPlyn = new KonPlyn(260, 1000, 600, 2000);
+        KonGaz kontenerGaz = new KonGaz(240, 900, 500, 1500, 5.0);
+        KonChlod kontenerChlod = new KonChlod(250, 950, 550, 1800, -10.0);
 
+        try {
+            kontenerPlyn.zaladuj(800, milk);
+            System.out.println(kontenerPlyn.getInfo());
+        } catch (Exception e) {
+            System.out.println("Blad: " + e.getMessage());
+        }
 
+        try {
+            kontenerPlyn.zaladuj(1200, fuel);
+        } catch (Exception e) {
+            System.out.println("Blad: " + e.getMessage());
+        }
 
+        try {
+            kontenerGaz.zaladuj(1400, helium);
+            System.out.println(kontenerGaz.getInfo());
+            kontenerGaz.oproznij();
+        } catch (Exception e) {
+            System.out.println("Blad: " + e.getMessage());
+        }
 
-
-        KonPlyn kon1 = new KonPlyn(10, 50, 100, 50, 100);
-        System.out.println(kon1.getNrSeryjny());
-
-        kon1.ZaladowanieKontenera(50, Paliwo);
+        try {
+            kontenerChlod.zaladuj(1000, ice);
+            System.out.println(kontenerChlod.getInfo());
+        } catch (Exception e) {
+            System.out.println("Blad: " + e.getMessage());
+        }
     }
 }

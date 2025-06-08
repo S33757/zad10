@@ -1,73 +1,31 @@
-public class Kontenery {
-
-    private int MasaLadunkuKG;
-    private int WysokoscCM;
-    private int WagaWlasnaKG;
-    private int GlebokoscCM;
-    private int MaxMasaLadunkuKG;
-    Produkty produkty;
-
-    protected static int n = 0;
-    protected String nrS1 = "KON";
-    protected String nrS2 = "Brak";
+abstract class Kontenery {
+    protected int masaLadunku;
+    protected int wysokosc;
+    protected int wagaWlasna;
+    protected int glebokosc;
+    protected int maxLadownosc;
+    protected Produkty produkt;
     protected String nrSeryjny;
+    protected static int licznik = 1;
 
-    protected String wygenerujNrSeryjny() {
-        n++;
-        return nrS1 + "-" + nrS2 + "-" + n;
+    public Kontenery(Produkty produkt, int wysokosc, int wagaWlasna, int glebokosc, int maxLadownosc) {
+        this.wysokosc = wysokosc;
+        this.wagaWlasna = wagaWlasna;
+        this.glebokosc = glebokosc;
+        this.maxLadownosc = maxLadownosc;
+        this.produkt = produkt;
+        this.nrSeryjny = "KON-" + getTyp() + "-" + (licznik++);
     }
 
-    public Kontenery(Produkty produkty, int masaLadunkuKG, int wysokoscCM, int wagaWlasnaKG, int glebokoscCM, int maxMasaLadunkuKG) {
-        MasaLadunkuKG = masaLadunkuKG;
-        WysokoscCM = wysokoscCM;
-        WagaWlasnaKG = wagaWlasnaKG;
-        GlebokoscCM = glebokoscCM;
-        MaxMasaLadunkuKG = maxMasaLadunkuKG;
-        nrSeryjny = wygenerujNrSeryjny();
-    }
+    protected abstract String getTyp();
 
-    public String getNrSeryjny() {
-        return nrSeryjny;
-    }
+    public String getNrSeryjny() { return nrSeryjny; }
 
+    public abstract void zaladuj(int masa, Produkty produkt);
 
-    public void OproznienieLadunku() {
-        MasaLadunkuKG = 0;
-        System.out.println("Kontener: " + nrSeryjny + " zostal oprozniony.");
-    }
+    public abstract void oproznij();
 
-    public void ZaladowanieKontenera(int IloscKG, Produkty produkty) {
-        if(produkty.getCzyNiebezpieczny() == true){
-            MaxMasaLadunkuKG = MaxMasaLadunkuKG / 2;
-        }
-        if(MaxMasaLadunkuKG < IloscKG){
-            throw new RuntimeException("Masa ladunku jest wieksza niz pojemnosc kontenera.");
-        }else{
-            MasaLadunkuKG = IloscKG;
-            System.out.println("Kontener: " + nrSeryjny + " zostal zaladowany.");
-        }
-    }
-
-
-    // ------ Gettery wszystkie private ----
-
-    public int getMasaLadunkuKG() {
-        return MasaLadunkuKG;
-    }
-
-    public int getWysokoscCM() {
-        return WysokoscCM;
-    }
-
-    public int getWagaWlasnaKG() {
-        return WagaWlasnaKG;
-    }
-
-    public int getGlebokoscCM() {
-        return GlebokoscCM;
-    }
-
-    public int getMaxMasaLadunkuKG() {
-        return MaxMasaLadunkuKG;
+    public String getInfo() {
+        return nrSeryjny + ": " + produkt.getNazwa() + ", " + masaLadunku + "kg";
     }
 }
